@@ -5,7 +5,7 @@ body {
   color: #333;
 }
 header {
-  background: linear-gradient(90deg, #003366, #005599);
+  background: linear-gradient(90deg, #419b55, #75b382);
   color: white;
   padding: 20px;
   display: flex;
@@ -32,7 +32,7 @@ nav {
   z-index: 10;
 }
 nav a {
-  color: #005599;
+  color: #419b55;
   margin: 0 20px;
   text-decoration: none;
   font-weight: 500;
@@ -53,7 +53,7 @@ main p {
   color: #555;
 }
 footer {
-  background-color: #003366;
+  background-color: #419b55;
   color: white;
   text-align: center;
   padding: 20px;
