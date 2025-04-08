@@ -143,23 +143,22 @@ function formatarParaBRL(input) {
     function buscarSelic() {
   fetch('https://finapp-backend.vercel.app/api/selic')
     .then(res => res.json())
-    .then(dados => {
-      const selic = parseFloat(dados[0].valor.replace(',', '.'));
-      const tipoTaxa = document.getElementById('tipoTaxa');
+    .then(dado => {
+      const item = Array.isArray(dado) ? dado[0] : dado;
+      const diaria = parseFloat(item.valor.replace(',', '.')) / 100;
+      const selicAnual = (Math.pow(1 + diaria, 252) - 1) * 100;
 
-      // Preenche o campo com o valor da SELIC
-      document.getElementById('taxaJuros').value = selic.toFixed(2);
+      document.getElementById('taxaJuros').value = selicAnual.toFixed(2);
+      document.getElementById('tipoTaxa').value = 'anual';
 
-      // Marca como "ao ano"
-      if (tipoTaxa) tipoTaxa.value = 'anual';
-      
-      alert(`Taxa SELIC aplicada: ${selic.toFixed(2)}% ao ano`);
+      alert(`Taxa SELIC aplicada: ${selicAnual.toFixed(2)}% ao ano`);
     })
     .catch(err => {
       console.error('Erro ao buscar SELIC:', err);
-      alert('Erro ao buscar taxa SELIC. Tente novamente mais tarde.');
+      alert('Erro ao buscar a taxa SELIC');
     });
 }
+
 
 
 
