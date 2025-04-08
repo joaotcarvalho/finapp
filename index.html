@@ -33,22 +33,27 @@
       </label>
   
       <label>
-        Taxa de Juros (% ao mês)
-        <input type="number" id="taxaJuros" step="0.01" required>
+        Taxa de Juros (%)
+        <div class="linha-taxa">
+          <input type="number" id="taxaJuros" step="0.01" required>
+          <select id="tipoTaxa">
+            <option value="mensal">ao mês</option>
+            <option value="anual">ao ano</option>
+          </select>
+        </div>
       </label>
   
       <label>
         Período
-        <input type="number" id="periodo" required>
+        <div class="linha-periodo">
+          <input type="number" id="periodo"  required>
+          <select id="tipoPeriodo">
+            <option value="mensal">Meses</option>
+            <option value="anual">Anos</option>
+          </select>
+        </div>
       </label>
   
-      <label>
-        Tipo de Período
-        <select id="tipoPeriodo">
-          <option value="mensal">Meses</option>
-          <option value="anual">Anos</option>
-        </select>
-      </label>
   
       <button type="submit">Calcular</button>
     </form>
@@ -96,7 +101,14 @@
   
       const P = parseFloat(document.getElementById('valorInicial').value);
       const A = parseFloat(document.getElementById('aporteMensal').value);
-      const i = parseFloat(document.getElementById('taxaJuros').value.replace(',', '.')) / 100;
+
+      let i = parseFloat(document.getElementById('taxaJuros').value.replace(',', '.')) / 100;
+      const tipoTaxa = document.getElementById('tipoTaxa').value;
+      if (tipoTaxa === 'anual') {
+        i = Math.pow(1 + i, 1 / 12) - 1; // converte taxa anual para equivalente mensal
+      }
+
+
       let n = parseInt(document.getElementById('periodo').value);
       const tipoPeriodo = document.getElementById('tipoPeriodo').value;
   
@@ -119,3 +131,10 @@
   <footer>&copy; 2025 Finapp</footer>
 </body>
 </html>
+
+<!--
+TODO: Adicionar formatação dos valores em reais
+TODO: Colocar possibilidade de taxas mensais ou anuais
+TODO: Colocar gráfico com a evolução do capital
+TODO: Colocar possibilidade de colcoar uma taxa atrelada a SELIC e SELIC como um link para uma página explicando o que é essa taxa
+-->

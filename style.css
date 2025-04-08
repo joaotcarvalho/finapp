@@ -109,3 +109,17 @@ button:hover {
 .hidden {
   display: none;
 }
+
+.linha-taxa .linha-periodo {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.linha-taxa .linha-periodo input,
+.linha-taxa .linha-periodo select {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
