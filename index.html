@@ -40,11 +40,11 @@
             <option value="mensal">ao mês</option>
             <option value="anual">ao ano</option>
           </select>
+          <button type="button" onclick="buscarSelic()">Usar SELIC atual</button>
         </div>
       </label>
   
-      <button type="button" onclick="buscarSelic()">Usar SELIC atual</button>
-
+      
       <label>
         Período
         <div class="linha-periodo">
@@ -141,7 +141,7 @@ function formatarParaBRL(input) {
 
 
     function buscarSelic() {
-  fetch('https://api.bcb.gov.br/dados/serie/bcdata.sgs.11/dados/ultimos/1?formato=json')
+  fetch('https://finapp-backend.vercel.app/api/selic')
     .then(res => res.json())
     .then(dados => {
       const selic = parseFloat(dados[0].valor.replace(',', '.'));
